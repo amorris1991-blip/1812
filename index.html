@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hold the Line! - War of 1812</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* 16:9 CONTAINER */
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 1600px;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        /* Fullscreen button */
+        #fullscreen-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(200, 16, 46, 0.9);
+            color: white;
+            border: 2px solid #d4af37;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #fullscreen-btn:hover {
+            background: rgba(200, 16, 46, 1);
+            transform: scale(1.05);
+        }
+
+        /* Scrollable content area */
+        #game-content {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Custom scrollbar */
+        #game-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #game-content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+        }
+
+        #game-content::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 5px;
+        }
+
+        #game-content::-webkit-scrollbar-thumb:hover {
+            background: #c8102e;
+        }
+
+        /* SCREENS */
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* TITLE SCREEN */
+        #title-screen {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        #title-screen h1 {
+            font-size: 3em;
+            color: #d4af37;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            margin-bottom: 20px;
+        }
+
+        #title-screen h2 {
+            font-size: 1.5em;
+            color: #c8102e;
+            margin-bottom: 30px;
+        }
+
+        #title-screen p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        #title-screen input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            font-size: 1.2em;
+            border: 3px solid #d4af37;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #c8102e 0%, #8b0000 100%);
+            color: white;
+            padding: 15px 40px;
+            border: 3px solid #d4af37;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        /* GAME SCREEN */
+        #game-screen {
+            color: white;
+        }
+
+        .event-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(200, 16, 46, 0.3);
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+        }
+
+        .event-header h2 {
+            font-size: 2em;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .event-header p {
+            color: #fff;
+            font-size: 1.1em;
+        }
+
+        /* RESOURCES BAR */
+        .resources-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .resource-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+        }
+
+        .resource-item h4 {
+            color: #d4af37;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .resource-bar-container {
+            background: rgba(0,0,0,0.5);
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .resource-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
+            transition: all 0.5s;
+            border-radius: 10px;
+        }
+
+        .resource-bar.warning {
+            background: linear-gradient(90deg, #ff9800 0%, #f57c00 100%);
+        }
+
+        .resource-bar.danger {
+            background: linear-gradient(90deg, #f44336 0%, #c62828 100%);
+        }
+
+        .resource-value {
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* CONTENT CARDS */
+        .content-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .content-card h3 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .content-card p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .why-matters {
+            background: rgba(200, 16, 46, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #c8102e;
+            margin-top: 20px;
+        }
+
+        .why-matters h4 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        /* QUIZ */
+        .quiz-option {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateX(10px);
+        }
+
+        .quiz-option.wrong {
+            border: 3px solid #f44336 !important;
+            background: rgba(244, 67, 54, 0.2) !important;
+           pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .quiz-option input[type="radio"] {
+            display: none;
+        }
+
+        .quiz-option label {
+            cursor: pointer;
+            display: block;
+            font-size: 1.1em;
+        }
+
+        .feedback {
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .feedback.failure {
+            background: rgba(200, 16, 46, 0.3);
+            border: 2px solid #c8102e;
+        }
+
+        .feedback.success {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        /* DECISIONS */
+        .decision-option {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            border: 3px solid #d4af37;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .decision-option:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .decision-option h4 {
+            color: #d4af37;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .decision-cost {
+            color: #ff9800;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        /* OUTCOME */
+        .resource-changes {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .resource-change {
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2em;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .resource-change.positive {
+            background: rgba(76, 175, 80, 0.3);
+            border: 2px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .resource-change.negative {
+            background: rgba(244, 67, 54, 0.3);
+            border: 2px solid #f44336;
+            color: #f44336;
+        }
+
+        /* REFLECTION SCREEN */
+        #reflection-screen {
+            color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #reflection-screen h1 {
+            text-align: center;
+            color: #d4af37;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+
+        .reflection-question {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .reflection-question h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        .reflection-question textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            background: rgba(255,255,255,0.9);
+            font-family: Georgia, serif;
+        }
+
+        .final-resource-display {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .final-resource {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            color: white;
+            font-size: 1.2em;
+        }
+
+        #victory-status {
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+        }
+
+        /* GAME OVER SCREEN */
+        #gameover-screen {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        #gameover-screen h1 {
+            font-size: 3em;
+            color: #c8102e;
+            margin-bottom: 30px;
+        }
+
+        #gameover-message {
+            background: rgba(200, 16, 46, 0.3);
+            padding: 30px;
+            border-radius: 12px;
+            border: 3px solid #c8102e;
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .message-box {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #d4af37;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background: white;
+            }
+            #game-container {
+                max-width: 100%;
+                box-shadow: none;
+            }
+            #fullscreen-btn {
+                display: none;
+            }
+            .btn {
+                display: none;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .resources-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .final-resource-display {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #title-screen h1 {
+                font-size: 2em;
+            }
+            .resources-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .final-resource-display {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <button id="fullscreen-btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+        
+        <div id="game-content">
+            <!-- TITLE SCREEN -->
+            <div id="title-screen" class="screen active">
+                <h1>⚔️ HOLD THE LINE! ⚔️</h1>
+                <h2>The War of 1812</h2>
+                <p>You are the President of the United States in 1812. Britain is pushing you around, kidnapping your sailors, and blocking your trade. Your citizens are angry. Your army is weak. Your treasury is empty.</p>
+                <p>But you've declared war on the most powerful empire on Earth.</p>
+                <p><strong>Can you survive?</strong></p>
+                
+                <input type="text" id="student-name" placeholder="Enter your name" maxlength="50">
+                <br><br>
+                <button id="start-btn" class="btn">START THE WAR</button>
+            </div>
+
+            <!-- GAME SCREEN -->
+            <div id="game-screen" class="screen">
+                <!-- Event Header -->
+                <div class="event-header">
+                    <h2 id="event-title"></h2>
+                    <p id="event-number"></p>
+                </div>
+
+                <!-- Resources -->
+                <div class="resources-container">
+                    <div class="resource-item">
+                        <h4>👥 TROOPS</h4>
+                        <div class="resource-bar-container">
+                            <div class="resource-bar" id="troops-bar"></div>
+                        </div>
+                        <div class="resource-value" id="troops-value">100</div>
+                    </div>
+                    <div class="resource-item">
+                        <h4>📦 SUPPLIES</h4>
+                        <div class="resource-bar-container">
+                            <div class="resource-bar" id="supplies-bar"></div>
+                        </div>
+                        <div class="resource-value" id="supplies-value">80</div>
+                    </div>
+                    <div class="resource-item">
+                        <h4>💰 TREASURY</h4>
+                        <div class="resource-bar-container">
+                            <div class="resource-bar" id="treasury-bar"></div>
+                        </div>
+                        <div class="resource-value" id="treasury-value">60</div>
+                    </div>
+                    <div class="resource-item">
+                        <h4>❤️ MORALE</h4>
+                        <div class="resource-bar-container">
+                            <div class="resource-bar" id="morale-bar"></div>
+                        </div>
+                        <div class="resource-value" id="morale-value">50</div>
+                    </div>
+                    <div class="resource-item">
+                        <h4>🤝 DIPLOMACY</h4>
+                        <div class="resource-bar-container">
+                            <div class="resource-bar" id="diplomacy-bar"></div>
+                        </div>
+                        <div class="resource-value" id="diplomacy-value">40</div>
+                    </div>
+                </div>
+
+                <!-- READING PHASE -->
+                <div id="reading-phase" class="hidden">
+                    <div class="content-card">
+                        <h3>📖 The Story</h3>
+                        <div id="reading-content"></div>
+                        
+                        <div class="why-matters">
+                            <h4>💡 Why This Matters:</h4>
+                            <p id="why-matters-text"></p>
+                        </div>
+                    </div>
+                    <button id="reading-done-btn" class="btn">I'M READY - TAKE THE QUIZ</button>
+                </div>
+
+                <!-- QUIZ PHASE -->
+                <div id="quiz-phase" class="hidden">
+                    <div class="content-card">
+                        <div id="quiz-container"></div>
+                    </div>
+                    <button id="submit-quiz-btn" class="btn hidden">Submit Answer</button>
+                </div>
+
+                <!-- DECISION PHASE -->
+                <div id="decision-phase" class="hidden">
+                    <div class="content-card">
+                        <h3>⚡ YOUR DECISION</h3>
+                        <div id="decision-prompt"></div>
+                        <div id="decision-options"></div>
+                    </div>
+                </div>
+
+                <!-- OUTCOME PHASE -->
+                <div id="outcome-phase" class="hidden">
+                    <div class="content-card">
+                        <h3>📊 RESULTS</h3>
+                        <div class="resource-changes" id="resource-changes"></div>
+                        <div id="outcome-content"></div>
+                    </div>
+                    <button id="next-event-btn" class="btn">CONTINUE TO NEXT EVENT</button>
+                </div>
+            </div>
+
+            <!-- REFLECTION SCREEN -->
+            <div id="reflection-screen" class="screen">
+                <h1>🏁 War Complete!</h1>
+                
+                <div id="final-results">
+                    <div id="victory-status"></div>
+                    
+                    <h2 style="text-align: center; color: #d4af37; margin: 30px 0;">Final Resources:</h2>
+                    <div class="final-resource-display" id="final-resource-display"></div>
+                </div>
+
+                <div class="content-card">
+                    <h2 style="color: #d4af37; text-align: center; margin-bottom: 30px;">📝 Reflection Questions</h2>
+                    
+                    <div class="reflection-question">
+                        <h3>1. What was your overall strategy for managing resources?</h3>
+                        <textarea placeholder="Write 3-5 sentences..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <h3>2. What was your biggest success and why?</h3>
+                        <textarea placeholder="Write 2-3 sentences..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <h3>3. If you could replay the game, what would you change?</h3>
+                        <textarea placeholder="Write 2-3 sentences..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <h3>4. How did resource management force you to make difficult choices?</h3>
+                        <textarea placeholder="Write 2-3 sentences..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <h3>5. What are the three most important things you learned about the War of 1812?</h3>
+                        <textarea placeholder="List three things..."></textarea>
+                    </div>
+
+                    <div class="reflection-question">
+                        <h3>6. Did America "win" the War of 1812? Explain with evidence from the game.</h3>
+                        <textarea placeholder="Write 4-6 sentences..."></textarea>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin: 30px 0;">
+                    <button id="generate-pdf-btn" class="btn">🖨️ PRINT FOR SUBMISSION</button>
+                    <button id="restart-btn" class="btn" style="background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); margin-left: 20px;">🔄 PLAY AGAIN</button>
+                </div>
+            </div>
+
+            <!-- GAME OVER SCREEN -->
+            <div id="gameover-screen" class="screen">
+                <h1>💀 GAME OVER 💀</h1>
+                <div id="gameover-message"></div>
+                <button class="btn" onclick="location.reload()">TRY AGAIN</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFullscreen() {
+            const container = document.getElementById('game-container');
+            
+            if (!document.fullscreenElement) {
+                container.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Update button text when entering/exiting fullscreen
+        document.addEventListener('fullscreenchange', () => {
+            const btn = document.getElementById('fullscreen-btn');
+            if (document.fullscreenElement) {
+                btn.textContent = '⛶ Exit Fullscreen';
+            } else {
+                btn.textContent = '⛶ Fullscreen';
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
