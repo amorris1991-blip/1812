@@ -35,7 +35,7 @@ const gameState = {
             
             "On June 18, 1812, America declared war on the most powerful nation on Earth. But here's the problem: America wasn't ready. The country was divided. Many people opposed the war. The army was tiny and poorly trained. This was going to be rough."
         ],
-        whyMatters: "Wars don't just happen randomly. They build up from years of anger, humiliation, and conflict. Understanding WHY the war started helps you see why Americans were willing to fightâ€”even when they weren't ready.",
+        whyMatters: "Wars don't just happen randomly. They build up from years of anger, humiliation, and conflict. Understanding WHY the war started helps you see why Americans were willing to fight—even when they weren't ready.",
         
         quizVersions: [
           [
@@ -161,7 +161,7 @@ const gameState = {
                 title: "Tell everyone this is a DEFENSIVE war - we're the good guys",
                 cost: { treasury: 5 },
                 effect: { diplomacy: 15, morale: -5 },
-                outcome: "You tell other countries that Britain attacked first and you're just defending yourselves. Some countries believe you. But the War Hawks are MADâ€”they wanted to look tough, not defensive.",
+                outcome: "You tell other countries that Britain attacked first and you're just defending yourselves. Some countries believe you. But the War Hawks are MAD—they wanted to look tough, not defensive.",
                 historicalContext: "Madison tried this angle, saying Britain forced the war. Problem was, America declared war and invaded Canada first. Hard to look defensive when you're the one invading.",
                 analysis: "Weak sauce. Other countries aren't stupid. America declared war and invaded. Pretending to be the victim just makes you look dishonest."
             }
@@ -289,14 +289,14 @@ const gameState = {
                     chance: 0.4,
                     success: {
                         effect: { morale: 5 },
-                        outcome: "Your troops arrive JUST in time. Hull is still scared, but with backup, he holds Detroit. Barely. Crisis avoidedâ€”but Hull is still a terrible general."
+                        outcome: "Your troops arrive JUST in time. Hull is still scared, but with backup, he holds Detroit. Barely. Crisis avoided—but Hull is still a terrible general."
                     },
                     failure: {
                         effect: { morale: -15 },
                         outcome: "Too late. By the time your troops arrive, Hull already surrendered. Now your reinforcements are captured too. You just made it WORSE."
                     }
                 },
-                historicalContext: "Hull got basically no help. He was alone, scared, and gave up. If reinforcements had arrived in time, maybe he would've held. But probably notâ€”Hull was a coward.",
+                historicalContext: "Hull got basically no help. He was alone, scared, and gave up. If reinforcements had arrived in time, maybe he would've held. But probably not—Hull was a coward.",
                 analysis: "Risky gamble. Hull's the problem, not the troop numbers. Even with reinforcements, a cowardly general will find a way to lose."
             },
             {
@@ -474,7 +474,7 @@ const gameState = {
           
           "On September 10, 1813, Perry's fleet of nine ships met six British warships near an island called Put-in-Bay. The battle was BRUTAL. Perry's flagship, USS Lawrence, got absolutely DESTROYED. 80% of his crew were killed or wounded.",
           
-          "Most commanders would've surrendered. Not Perry. He grabbed his battle flagâ€”which said \"DON'T GIVE UP THE SHIP\"â€”and had himself rowed through British gunfire to another ship, USS Niagara. He took command and led a devastating attack. The British surrendered.",
+          "Most commanders would've surrendered. Not Perry. He grabbed his battle flag—which said \"DON'T GIVE UP THE SHIP\"—and had himself rowed through British gunfire to another ship, USS Niagara. He took command and led a devastating attack. The British surrendered.",
           
           "Perry sent a message to General Harrison: \"We have met the enemy and they are ours.\" With Lake Erie under American control, the British had to abandon Detroit and retreat into Canada. The Northwest Territory was finally secure."
         ],
@@ -624,7 +624,7 @@ const gameState = {
             
             "America quickly assembles 7,000 militia to stop the British at Bladensburg, just outside Washington. On paper, the Americans have more troops. In reality? These militia have barely any training.",
             
-            "The British attack. The militia fire their muskets once... maybe twice... and then PANIC. They drop their weapons and RUN. The British barely have to fightâ€”they're just watching Americans sprint away in terror. People started calling it the \"Bladensburg Races\" like it was a joke. It wasn't funny.",
+            "The British attack. The militia fire their muskets once... maybe twice... and then PANIC. They drop their weapons and RUN. The British barely have to fight—they're just watching Americans sprint away in terror. People started calling it the \"Bladensburg Races\" like it was a joke. It wasn't funny.",
             
             "The British march into Washington unopposed. President Madison and the government flee the city. First Lady Dolley Madison grabs a portrait of George Washington and escapes just in time.",
             
@@ -749,7 +749,7 @@ const gameState = {
                 title: "Rally the nation - turn this into a war cry!",
                 cost: { treasury: 20 },
                 effect: { morale: 15, diplomacy: 10 },
-                outcome: "\"REMEMBER WASHINGTON!\" becomes the battle cry. People are FURIOUS at the British. Volunteers flood recruitment offices. The British brutality backfiredâ€”you're stronger now, not weaker.",
+                outcome: "\"REMEMBER WASHINGTON!\" becomes the battle cry. People are FURIOUS at the British. Volunteers flood recruitment offices. The British brutality backfired—you're stronger now, not weaker.",
                 historicalContext: "This is what happened. Instead of breaking American spirit, burning the capital made people mad and united them. Even Federalists who opposed the war started supporting it.",
                 analysis: "PERFECT RESPONSE. Never waste a crisis. When the enemy does something brutal, use it to fuel your people's anger. British burned your capital? Make them regret it."
             },
@@ -788,17 +788,17 @@ const gameState = {
         id: 6,
         title: "The Rockets' Red Glare (1814)",
         reading: [
-            "After burning Washington, the British head to Baltimore. This is the BIG prizeâ€”a rich port city and the home base of American privateers (basically legal pirates) who've been destroying British merchant ships.",
+            "After burning Washington, the British head to Baltimore. This is the BIG prize—a rich port city and the home base of American privateers (basically legal pirates) who've been destroying British merchant ships.",
             
-            "To capture Baltimore, the British need to take Fort McHenryâ€”a star-shaped fort guarding the harbor. About 1,000 American soldiers are inside. Major Armistead, the fort's commander, orders a HUGE American flag madeâ€”30 feet by 42 feet. He wants the British to see it clearly.",
+            "To capture Baltimore, the British need to take Fort McHenry—a star-shaped fort guarding the harbor. About 1,000 American soldiers are inside. Major Armistead, the fort's commander, orders a HUGE American flag made—30 feet by 42 feet. He wants the British to see it clearly.",
             
-            "On September 13, 1814, British warships start blasting Fort McHenry with rockets and bombs. For 25 HOURS straight, explosions rain down. Up to 1,800 bombs hit the fort. Americans can barely fire backâ€”the British ships stay out of range of the fort's cannons.",
+            "On September 13, 1814, British warships start blasting Fort McHenry with rockets and bombs. For 25 HOURS straight, explosions rain down. Up to 1,800 bombs hit the fort. Americans can barely fire back—the British ships stay out of range of the fort's cannons.",
             
             "A lawyer named Francis Scott Key is stuck on a British ship watching the battle. All night long, he sees rockets lighting up the sky. But he can't tell who's winning through all the smoke.",
             
             "Then dawn breaks on September 14. The smoke clears. And that MASSIVE American flag is still flying over Fort McHenry. The British failed.",
             
-            "Key is so moved that he writes a poem called \"Defence of Fort M'Henry.\" You know it better as \"The Star-Spangled Banner\"â€”America's national anthem.",
+            "Key is so moved that he writes a poem called \"Defence of Fort M'Henry.\" You know it better as \"The Star-Spangled Banner\"—America's national anthem.",
             
             "The British give up and sail away. Baltimore is saved. After Washington's disaster, this feels like REDEMPTION."
         ],
@@ -911,7 +911,7 @@ const gameState = {
                 cost: { supplies: 10, treasury: 15 },
                 effect: { morale: 15, treasury: 20, diplomacy: 10 },
                 outcome: "Baltimore's privateers swarm British supply ships like sharks. They capture supplies, disrupt operations, and make the British FURIOUS. The British start questioning if Baltimore is worth the trouble.",
-                historicalContext: "Baltimore's privateers were one reason the British attacked in the first placeâ€”they'd been destroying British shipping for years. Using them during the battle added insult to injury.",
+                historicalContext: "Baltimore's privateers were one reason the British attacked in the first place—they'd been destroying British shipping for years. Using them during the battle added insult to injury.",
                 analysis: "Creative and effective. Privateers were Baltimore's specialty. Using them to make the British miserable is perfect psychological warfare."
             },
             {
@@ -944,7 +944,7 @@ const gameState = {
         reading: [
             "While diplomats argue about peace in Europe, Britain launches one final attack: New Orleans. If they capture it, they control the Mississippi River and all the land around it. HUGE prize.",
             
-            "8,000 British veteransâ€”the best troops in the worldâ€”sail into the Gulf of Mexico. Defending New Orleans is Andrew Jackson with about 4,500 troops. But Jackson's \"army\" is WILD: regular soldiers, militia, free Black troops, Choctaw warriors, and literal pirates led by Jean Lafitte.",
+            "8,000 British veterans—the best troops in the world—sail into the Gulf of Mexico. Defending New Orleans is Andrew Jackson with about 4,500 troops. But Jackson's \"army\" is WILD: regular soldiers, militia, free Black troops, Choctaw warriors, and literal pirates led by Jean Lafitte.",
             
             "Jackson builds a defensive line: a thick mud wall reinforced with cotton bales, stretching from a swamp to the Mississippi River. The British have to cross 800 yards of open ground to reach it.",
             
@@ -952,7 +952,7 @@ const gameState = {
             
             "American casualties? 13 killed, 58 wounded. It's not even close.",
             
-            "Here's the weird part: this battle happened TWO WEEKS AFTER a peace treaty was signed in Europe. Nobody in America knew the war was over. But it doesn't matterâ€”New Orleans becomes the most famous American victory of the war.",
+            "Here's the weird part: this battle happened TWO WEEKS AFTER a peace treaty was signed in Europe. Nobody in America knew the war was over. But it doesn't matter—New Orleans becomes the most famous American victory of the war.",
             
             "Andrew Jackson becomes a national hero. Americans believe they WON the war, even though the treaty gave them nothing."
         ],
@@ -1113,7 +1113,7 @@ const gameState = {
             
             "Then news arrives: Americans won at Baltimore and Plattsburgh. Britain realizes conquering America would take YEARS and cost a fortune. Meanwhile, all the European powers are meeting in Vienna to divide up the world after Napoleon's defeat. Britain needs to focus on THAT, not some annoying war in America.",
             
-            "On December 24, 1814, they sign the Treaty of Ghent. Here's what it says: everything goes back to how it was before the war. No territory changes. Nothing about impressment or trade rightsâ€”the whole REASON the war started. Prisoners get exchanged. That's it.",
+            "On December 24, 1814, they sign the Treaty of Ghent. Here's what it says: everything goes back to how it was before the war. No territory changes. Nothing about impressment or trade rights—the whole REASON the war started. Prisoners get exchanged. That's it.",
             
             "On paper, it looks like the war accomplished NOTHING.",
             
@@ -1121,7 +1121,7 @@ const gameState = {
             
             "People started calling this the \"Second War of Independence.\" Did America \"win\"? Not really. But Americans BELIEVED they won. And sometimes, that's what matters."
         ],
-        whyMatters: "Wars don't always have clear winners. Sometimes both sides just stop fighting. But the MEANING of a warâ€”what people THINK happenedâ€”can be more important than what actually did. America gained nothing on paper but everything in confidence.",
+        whyMatters: "Wars don't always have clear winners. Sometimes both sides just stop fighting. But the MEANING of a war—what people THINK happened—can be more important than what actually did. America gained nothing on paper but everything in confidence.",
         
         quizVersions: [
             [
@@ -1232,7 +1232,7 @@ const gameState = {
                         outcome: "Britain refuses. Peace talks STALL. The war drags on through winter. More people die. More money wasted. Finally you accept status quo terms anyway. Your stubbornness accomplished nothing."
                     }
                 },
-                historicalContext: "American negotiators wanted concessions but wisely didn't push too hard. By 1814, impressment was already a dead issueâ€”Napoleon's defeat meant Britain didn't need it anymore.",
+                historicalContext: "American negotiators wanted concessions but wisely didn't push too hard. By 1814, impressment was already a dead issue—Napoleon's defeat meant Britain didn't need it anymore.",
                 analysis: "Risky pride move. Impressment is already over because the European war ended. Demanding Britain say 'sorry' might feel good but risks prolonging the war for nothing."
             },
             {
@@ -1367,7 +1367,7 @@ const gameState = {
     };
     
     document.getElementById('gameover-message').innerHTML = `
-        <h3>ðŸ’€ ${resource.toUpperCase()} = ZERO</h3>
+        <h3>💀 ${resource.toUpperCase()} = ZERO</h3>
         <p>${messages[resource]}</p>
         <p><strong>You made it through ${gameState.currentEventIndex} of 8 events.</strong></p>
     `;
@@ -1581,7 +1581,7 @@ const gameState = {
     
     quizContainer.innerHTML = `
         <div style="text-align: center;">
-            <div style="font-size: 5em; margin: 20px 0;">âœ…</div>
+            <div style="font-size: 5em; margin: 20px 0;">✅</div>
             <h2 style="color: #4a7c4e;">You passed!</h2>
             <div class="message-box" style="background-color: #4a7c4e; color: white;">
                 <p style="font-size: 1.3em;">Nice! You got all ${totalQuestions} questions right.</p>
@@ -1633,12 +1633,12 @@ const gameState = {
             const costText = Object.entries(decision.cost)
                 .map(([resource, amount]) => `-${amount} ${resource}`)
                 .join(', ');
-            costDiv.textContent = `ðŸ’° Cost: ${costText}`;
+            costDiv.textContent = `💰 Cost: ${costText}`;
             optionDiv.appendChild(costDiv);
         } else {
             const costDiv = document.createElement('div');
             costDiv.className = 'decision-cost';
-            costDiv.textContent = `ðŸ’° Cost: FREE`;
+            costDiv.textContent = `💰 Cost: FREE`;
             optionDiv.appendChild(costDiv);
         }
         
@@ -1646,7 +1646,7 @@ const gameState = {
         mysteryDiv.style.fontStyle = 'italic';
         mysteryDiv.style.color = '#666';
         mysteryDiv.style.marginTop = '10px';
-        mysteryDiv.textContent = 'â“ What will happen? Choose to find out...';
+        mysteryDiv.textContent = '❓ What will happen? Choose to find out...';
         optionDiv.appendChild(mysteryDiv);
         
         optionDiv.addEventListener('click', () => makeDecision(index));
@@ -1686,17 +1686,17 @@ const gameState = {
     
     const outcomeHTML = `
         <div class="outcome-section">
-            <h3 style="color: #c8102e; margin-bottom: 15px;">ðŸ“œ What Happened:</h3>
+            <h3 style="color: #c8102e; margin-bottom: 15px;">📊 What Happened:</h3>
             <p style="font-size: 1.1em; line-height: 1.6;">${outcomeText}</p>
         </div>
         
         <div class="outcome-section" style="background-color: #f4e9d8; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 5px solid #8b6f47;">
-            <h3 style="color: #8b6f47; margin-bottom: 10px;">ðŸ“š What REALLY Happened in History:</h3>
+            <h3 style="color: #8b6f47; margin-bottom: 10px;">📜 What REALLY Happened in History:</h3>
             <p style="color: #2c1810; line-height: 1.6;">${decision.historicalContext}</p>
         </div>
         
         <div class="outcome-section" style="background-color: #e8f4f8; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 5px solid #2c5d8a;">
-            <h3 style="color: #2c5d8a; margin-bottom: 10px;">ðŸŽ¯ Was This a Good Choice?</h3>
+            <h3 style="color: #2c5d8a; margin-bottom: 10px;">🎯 Was This a Good Choice?</h3>
             <p style="color: #1a1a2e; line-height: 1.6; font-weight: 500;">${decision.analysis}</p>
         </div>
     `;
@@ -1725,13 +1725,13 @@ const gameState = {
     const morale = gameState.resources.morale.value;
     
     if (resourcesAbove30 === 5 && morale > 60) {
-        victoryStatus = 'ðŸŽ–ï¸ LEGENDARY - You crushed it! America survived with strength!';
+        victoryStatus = '🏆 LEGENDARY - You crushed it! America survived with strength!';
         victoryClass = 'complete-victory';
     } else if (resourcesAbove30 >= 3 && morale > 40) {
-        victoryStatus = 'âš”ï¸ SURVIVED - You made it through, but it was rough.';
+        victoryStatus = '⭐ SURVIVED - You made it through, but it was rough.';
         victoryClass = 'hard-fought';
     } else {
-        victoryStatus = 'ðŸ´ BARELY ALIVE - America survived... barely.';
+        victoryStatus = '💀 BARELY ALIVE - America survived... barely.';
         victoryClass = 'survival';
     }
     
